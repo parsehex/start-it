@@ -1,0 +1,83 @@
+{% extends "admin/index.html" %} {% load i18n static %} {% block content %}
+<div class="admin-overview">
+	<style>
+		.admin-overview {
+			padding: 20px;
+		}
+		.quick-stats {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 20px;
+			margin-bottom: 30px;
+		}
+		.stat-card {
+			background: white;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+		.stat-number {
+			font-size: 24px;
+			font-weight: bold;
+			color: var(--primary);
+		}
+		.stat-label {
+			color: #666;
+			margin-top: 5px;
+		}
+		.recent-additions {
+			background: white;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			margin-bottom: 30px;
+		}
+		.recent-additions h2 {
+			margin-top: 0;
+			color: #333;
+		}
+	</style>
+
+	<div class="quick-stats">
+		<div class="stat-card">
+			<div class="stat-number">{{ total_starters }}</div>
+			<div class="stat-label">Total Starters</div>
+		</div>
+		<div class="stat-card">
+			<div class="stat-number">{{ languages_count }}</div>
+			<div class="stat-label">Languages</div>
+		</div>
+		<div class="stat-card">
+			<div class="stat-number">{{ recent_additions }}</div>
+			<div class="stat-label">Added this week</div>
+		</div>
+	</div>
+
+	<div class="recent-additions">
+		<h2>Recent Additions</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Language</th>
+					<th>Added</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for starter in latest_starters %}
+				<tr>
+					<td>
+						<a href="{% url 'admin:starters_starter_change' starter.id %}"
+							>{{ starter.name }}</a
+						>
+					</td>
+					<td>{{ starter.language }}</td>
+					<td>{{ starter.created_at|date }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{{ block.super }} {% endblock %}

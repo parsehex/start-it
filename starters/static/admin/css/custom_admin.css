@@ -1,0 +1,33 @@
+/* Custom styles for the admin */
+:root {
+	--primary: #4f46e5;
+	--secondary: #6366f1;
+	--accent: #818cf8;
+}
+
+#header {
+	background: var(--primary);
+	color: white;
+}
+
+.module h2,
+.module caption {
+	background: var(--secondary);
+}
+
+div.breadcrumbs {
+	background: var(--accent);
+}
+
+.button,
+input[type='submit'],
+input[type='button'],
+.submit-row input {
+	background: var(--primary);
+}
+
+.button:hover,
+input[type='submit']:hover,
+input[type='button']:hover {
+	background: var(--secondary);
+}
