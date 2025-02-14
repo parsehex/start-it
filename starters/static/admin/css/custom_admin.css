@@ -10,6 +10,16 @@
 	color: white;
 }
 
+.dashboard div#content {
+	width: unset;
+}
+@media (min-width: 1280px) {
+	main#content-start div#content {
+		margin: auto;
+		max-width: 800px;
+	}
+}
+
 .module h2,
 .module caption {
 	background: var(--secondary);
@@ -19,15 +29,133 @@ div.breadcrumbs {
 	background: var(--accent);
 }
 
-.button,
 input[type='submit'],
 input[type='button'],
 .submit-row input {
 	background: var(--primary);
 }
 
-.button:hover,
 input[type='submit']:hover,
 input[type='button']:hover {
 	background: var(--secondary);
+}
+
+.action-buttons {
+	display: flex;
+	gap: 8px;
+}
+
+.button {
+	display: inline-block;
+	padding: 6px 12px;
+	background: var(--primary);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.button:hover {
+	background: var(--primary-darker);
+}
+
+/* For the list view buttons */
+.action-buttons .button:first-child {
+	background: var(--secondary);
+}
+
+.action-buttons .button:first-child:hover {
+	background: var(--secondary-darker);
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+	.admin-overview {
+		background: var(--darkened-bg);
+		color: var(--body-fg);
+	}
+
+	.stat-card {
+		background: var(--body-bg);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	}
+
+	.stat-number {
+		color: var(--link-fg);
+	}
+
+	.stat-label {
+		color: var(--body-quiet-color);
+	}
+
+	.recent-additions,
+	.scrape-form {
+		background: var(--body-bg);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	}
+
+	.recent-additions h2,
+	.scrape-form h2 {
+		color: var(--body-fg);
+	}
+
+	.recent-additions table {
+		color: var(--body-fg);
+	}
+
+	.recent-additions th {
+		color: var(--body-quiet-color);
+	}
+
+	.recent-additions td {
+		border-color: var(--border-color);
+	}
+
+	.scrape-form button {
+		background: var(--button-bg);
+		color: var(--button-fg);
+	}
+
+	.scrape-form button:hover {
+		background: var(--button-hover-bg);
+	}
+
+	/* Form fields */
+	.scrape-form input[type='url'] {
+		background: var(--darkened-bg);
+		border-color: var(--border-color);
+		color: var(--body-fg);
+	}
+
+	.scrape-form input[type='url']:focus {
+		border-color: var(--body-quiet-color);
+		outline-color: var(--body-quiet-color);
+	}
+}
+
+/* Light mode adjustments */
+.stat-card {
+	background: var(--body-bg);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recent-additions,
+.scrape-form {
+	background: var(--body-bg);
+}
+
+.scrape-form button {
+	background: var(--button-bg);
+	color: var(--button-fg);
+	border: none;
+	padding: 10px 15px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.scrape-form button:hover {
+	background: var(--button-hover-bg);
 }

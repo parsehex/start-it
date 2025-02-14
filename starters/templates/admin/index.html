@@ -1,4 +1,11 @@
-{% extends "admin/index.html" %} {% load i18n static %} {% block content %}
+{% extends "admin/index.html" %} {% load i18n static %} {% block extrastyle %}
+{{ block.super }}
+<link
+	rel="stylesheet"
+	type="text/css"
+	href="{% static 'admin/css/custom_admin.css' %}"
+/>
+{% endblock %} {% block content %}
 <div class="admin-overview">
 	<style>
 		.admin-overview {
@@ -36,16 +43,35 @@
 			margin-top: 0;
 			color: #333;
 		}
+
+		.scrape-form {
+			background: white;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			margin-bottom: 30px;
+		}
+		.scrape-form h2 {
+			margin-top: 0;
+			color: #333;
+		}
+		.scrape-form button {
+			background: var(--primary);
+			color: white;
+			padding: 10px 15px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.scrape-form button:hover {
+			background: darken(var(--primary), 10%);
+		}
 	</style>
 
 	<div class="quick-stats">
 		<div class="stat-card">
 			<div class="stat-number">{{ total_starters }}</div>
 			<div class="stat-label">Total Starters</div>
-		</div>
-		<div class="stat-card">
-			<div class="stat-number">{{ languages_count }}</div>
-			<div class="stat-label">Languages</div>
 		</div>
 		<div class="stat-card">
 			<div class="stat-number">{{ recent_additions }}</div>
@@ -61,6 +87,7 @@
 					<th>Name</th>
 					<th>Language</th>
 					<th>Added</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -73,10 +100,30 @@
 					</td>
 					<td>{{ starter.language }}</td>
 					<td>{{ starter.created_at|date }}</td>
+					<td class="action-buttons">
+						<a class="button" href="{{ starter.repo_url }}" target="_blank"
+							>View Repo</a
+						>
+						<button
+							class="button"
+							onclick="scrapeStarter({{ starter.id }})"
+							type="button"
+						>
+							Refresh
+						</button>
+					</td>
 				</tr>
 				{% endfor %}
 			</tbody>
 		</table>
+	</div>
+
+	<div class="scrape-form">
+		<h2>Scrape a Repo</h2>
+		<form method="post" action="{% url 'admin:scrape_starter' %}">
+			{% csrf_token %} {{ scrape_form.as_p }}
+			<button type="submit">Scrape</button>
+		</form>
 	</div>
 </div>
 

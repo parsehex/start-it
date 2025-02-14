@@ -1,0 +1,9 @@
+{% extends "admin/base_site.html" %} {% block content %}
+<div class="module">
+	<h2>Scrape and Add Starter</h2>
+	<form method="post">
+		{% csrf_token %} {{ form.as_p }}
+		<button type="submit" class="button">Scrape</button>
+	</form>
+</div>
+{% endblock %}
