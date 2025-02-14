@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+<div class="text-center py-16 px-6 bg-white shadow-md rounded-lg">
+	<h1 class="text-5xl font-extrabold text-gray-900">Start It</h1>
+	<p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+		Find the perfect starting point for your next project. Skip the setup and
+		get straight to building.
+	</p>
+	<div class="mt-6 flex justify-center space-x-4">
+		<a
+			href="/starters"
+			class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow-md hover:bg-indigo-700"
+			>Browse Starters</a
+		>
+		<a
+			href="/admin"
+			class="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-100"
+			>Manage Starters</a
+		>
+	</div>
+</div>
+
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">
+	<div class="p-6 bg-gray-100 rounded-lg shadow">
+		<h2 class="text-xl font-semibold">Skip the Setup</h2>
+		<p class="mt-2 text-gray-600">
+			Start with pre-configured projects so you can focus on coding.
+		</p>
+	</div>
+	<div class="p-6 bg-gray-100 rounded-lg shadow">
+		<h2 class="text-xl font-semibold">Curated Selection</h2>
+		<p class="mt-2 text-gray-600">
+			A hand-picked collection of useful starters across various stacks.
+		</p>
+	</div>
+	<div class="p-6 bg-gray-100 rounded-lg shadow">
+		<h2 class="text-xl font-semibold">Find What You Need</h2>
+		<p class="mt-2 text-gray-600">
+			Filter and search by language, stack, and more.
+		</p>
+	</div>
+</div>
+{% endblock %}

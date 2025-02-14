@@ -26,3 +26,7 @@ def admin_index_context(request):
 def starter_list(request):
 	starters = Starter.objects.all().order_by("-created_at")
 	return render(request, "starters/list.html", {"starters": starters})
+
+
+def landing_page(request):
+	return render(request, "landing.html")
