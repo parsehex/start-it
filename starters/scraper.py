@@ -24,6 +24,7 @@ class StarterScraper:
 		if not self.api_url:
 			raise ValueError("Unsupported repository host")
 
+		# print('scraping', self.api_url)
 		response = requests.get(self.api_url)
 		if response.status_code != 200:
 			raise ValueError("Failed to fetch repository data")
@@ -38,15 +39,19 @@ class StarterScraper:
 			if lang_response.status_code == 200:
 				languages = list(lang_response.json().keys())
 
-		return {
-		    'name':
-		    data.get('name'),
-		    'description':
-		    data.get('description'),
-		    'language':
-		    languages[0] if languages else None,
-		    'license':
-		    data.get('license', {}).get('spdx_id'),
-		    'updated_at':
-		    datetime.strptime(data.get('updated_at'), '%Y-%m-%dT%H:%M:%SZ')
+		name = data.get('name')
+		description = data.get('description')
+		language = languages[0] if languages else None
+		license = data.get('license', {})
+		if license:
+			license = license.get('spdx_id')
+		updated_at = datetime.strptime(data.get('updated_at'),
+		                               '%Y-%m-%dT%H:%M:%SZ')
+		returnData = {
+		    'name': name,
+		    'description': description,
+		    'language': language,
+		    'license': license,
+		    'updated_at': updated_at
 		}
+		return returnData
